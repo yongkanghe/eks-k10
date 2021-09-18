@@ -1,3 +1,70 @@
+echo '-------Creating an EKS Cluster (typically about 20 mins)'
+starttime=$(date +%s)
+. setenv.sh
+EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
+
+eksctl create cluster \
+  --name $EKS_CLUSTER_NAME \
+  --version 1.20 \
+  --nodegroup-name workers4yong1 \
+  --nodes 1 \
+  --nodes-min 1 \
+  --nodes-max 3 \
+  --node-type $MY_INSTANCE_TYPE \
+  --ssh-public-key ~/.ssh/id_rsa.pub \
+  --region $MY_REGION \
+  --kubeconfig \
+  --ssh-access \
+  --managed
+
+echo '-------Install K10'
+kubectl config use-context yongkang@eks4yong1.us-east-2.eksctl.io
+kubectl create ns kasten-io
+helm install k10 kasten/k10 --namespace=kasten-io \
+  --set global.persistence.metering.size=1Gi \
+  --set prometheus.server.persistentVolume.size=1Gi \
+  --set global.persistence.catalog.size=1Gi \
+  --set global.persistence.jobs.size=1Gi \
+  --set global.persistence.logging.size=1Gi \
+  --set secrets.awsAccessKeyId="${AWS_ACCESS_KEY_ID}" \
+  --set secrets.awsSecretAccessKey="${AWS_SECRET_ACCESS_KEY}" \
+  --set auth.tokenAuth.enabled=true \
+  --set externalGateway.create=true  
+
+echo '-------Extract the token for k10-k10 admin'
+sa_secret=$(kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}" --namespace kasten-io)
+kubectl get secret $sa_secret --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode > $HOME/k8s/eks-token
+sed -i -e '$a\' $HOME/k8s/eks-token
+
+echo '-------Set the default ns to k10'
+kubectl config set-context --current --namespace kasten-io
+
+echo '-------Output the IP and token'
+sleep 100
+k10ui=http://$(kubectl get svc gateway-ext | awk '{print $4}'|grep -v EXTERNAL):/k10/#
+echo -e "\n$k10ui" >> $HOME/k8s/eks-token
+clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
+echo $clusterid >> $HOME/k8s/eks-token
+
+echo '-------Creating a S3 profile'
+$HOME/k8s/add-aws-profile.sh
+
+echo '-------Creating database and policies'
+#$HOME/k8s/db/aws-db.sh
+
+echo '-------Accessing K10 UI'
+cat $HOME/k8s/eks-token
+
+echo '-------Adding to Multi-Cluster management'
+#$HOME/k8s/add-aws-mcmgmt.sh
+
+duration=$(( $(TZ=UTC0 printf '%(%s)T\n' '-1') - startingtime ))
+echo "-------Total time is $(($duration / 60)) minutes $(($duration % 60)) seconds."
+
+
+
+
+
 echo '-------Creating a GKE Cluster (typically in less than 10 mins)'
 starttime=$(date +%s)
 . setenv.sh
