@@ -5,7 +5,7 @@ EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
 
 eksctl create cluster \
   --name $EKS_CLUSTER_NAME \
-  --version 1.20 \
+  --version $K8S_VERSION \
   --nodegroup-name workers4yong1 \
   --nodes 1 \
   --nodes-min 1 \
@@ -13,7 +13,6 @@ eksctl create cluster \
   --node-type $MY_INSTANCE_TYPE \
   --ssh-public-key ~/.ssh/id_rsa.pub \
   --region $MY_REGION \
-  --kubeconfig \
   --ssh-access \
   --managed
 
