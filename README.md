@@ -1,12 +1,12 @@
 # This is a draft and working in progress. 
 
-I just want to build a EKS Cluster to play with the various Data Management capabilities e.g. Backup/Restore, Disaster Recovery and Application Mobility. 
+I just want to build an EKS Cluster to play with the various Data Management capabilities e.g. Backup/Restore, Disaster Recovery and Application Mobility. 
 
-It is challenging to create a GKE cluster from Google Cloud if you are not familiar to it. After the GKE Cluster is up running, we still need to install Kasten, create a sample DB, create policies etc.. The whole process is not that simple.
+It is challenging to create an EKS cluster from AWS Cloud if you are not familiar to it. After the EKS Cluster is up running, we still need to install Kasten, create a sample DB, create policies etc.. The whole process is not that simple.
 
-![image](https://user-images.githubusercontent.com/40347406/132093566-f98f3d69-1b39-4153-9f98-e47bcd0346d3.png)
+![image](https://blog.kasten.io/hs-fs/hubfs/Blog%20Cross-Cluster%20Application%20Migration%20and%20Disaster%20Recovery%20for%20AWS%20EKS%20Using%20Kasten%20K10%20by%20Michael%20Cade%205.png?width=406&name=Blog%20Cross-Cluster%20Application%20Migration%20and%20Disaster%20Recovery%20for%20AWS%20EKS%20Using%20Kasten%20K10%20by%20Michael%20Cade%205.png)
 
-This script based automation allows you to build a ready-to-use Kasten K10 demo environment running on GKE in about 6 minutes. For simplicity and cost optimization, the GKE cluster will have only one worker node and be built in the default vpc using the default subnet. This is bash shell based scripts which might only work on Linux and MacOS terminal or Cloud Shell. 
+This script based automation allows you to build a ready-to-use Kasten K10 demo environment running on EKS in about about 20 minutes. For simplicity and cost optimization, the EKS cluster will have only one worker node and create a separate vpc and subnets. This is bash shell based scripts which might only work on Cloud Shell. Linux and MacOS terminal may work as well, but I haven't tested it yet. 
 
 # Here're the prerequisities. 
 ## Step 1 to 3 required for MacOS and Linux, skip for Cloud Shell.
@@ -52,8 +52,8 @@ vi setenv.sh
 # Cick my picture to watch the how-to video.
 [![IMAGE ALT TEXT HERE](https://media-exp1.licdn.com/dms/image/C5622AQFAVpxHMBu7lw/feedshare-shrink_2048_1536/0/1630923993310?e=1634169600&v=beta&t=5f3TgJLeA4gpFubLrdtKrvFED3M_z5Q6igza3Ibaheo)](https://www.youtube.com/watch?v=6vDEk_9cNaI)
 
-# For more details about GKE Backup and Restore
-https://blog.kasten.io/posts/postgresql-backup-and-restore-on-google-cloud-using-kasten-k10
+# For more details about EKS Backup and Restore
+https://blog.kasten.io/cross-cluster-application-migration-and-dr-for-aws-eks-using-kasten-k10
 
 
 # Kasten - No. 1 Kubernetes Backup
@@ -65,4 +65,3 @@ http://k10.yongkang.cloud
 # Contributors
 
 ### [Yongkang He](http://yongkang.cloud)
-### [Lei Wei](https://www.linkedin.com/in/lei-wei-96727950/)
