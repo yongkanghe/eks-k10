@@ -18,5 +18,3 @@ echo "alias k=kubectl" >> ~/.bashrc
 echo "Generate ssh public key"
 ssh-keygen -q -f ~/.ssh/id_rsa -N ""
 
-echo "Configure AWS Access Key ID and Secret Access Key"
-
