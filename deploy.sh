@@ -5,7 +5,7 @@ EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
 
 eksctl create cluster \
   --name $EKS_CLUSTER_NAME \
-  --version $K8S_VERSION \
+  --version $MY_K8S_VERSION \
   --nodegroup-name workers4yong1 \
   --nodes 1 \
   --nodes-min 1 \
