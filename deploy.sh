@@ -2,6 +2,9 @@ echo '-------Creating an EKS Cluster (typically about 20 mins)'
 starttime=$(date +%s)
 . setenv.sh
 EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
+EKS_BUCKET_NAME=$MY_BUCKET-$(date +%s)
+echo $EKS_CLUSTER_NAME > eks_clustername
+echo $EKS_BUCKET_NAME > eks_bucketname
 
 eksctl create cluster \
   --name $EKS_CLUSTER_NAME \
@@ -17,8 +20,8 @@ eksctl create cluster \
   --managed
 
 echo '-------Install K10'
-kubectl config use-context yongkang@eks4yong1.us-east-2.eksctl.io
 kubectl create ns kasten-io
+helm repo add kasten https://charts.kasten.io
 helm install k10 kasten/k10 --namespace=kasten-io \
   --set global.persistence.metering.size=1Gi \
   --set prometheus.server.persistentVolume.size=1Gi \
@@ -30,13 +33,15 @@ helm install k10 kasten/k10 --namespace=kasten-io \
   --set auth.tokenAuth.enabled=true \
   --set externalGateway.create=true  
 
+echo '-------Set the default ns to k10'
+kubectl config set-context --current --namespace kasten-io
+
 echo '-------Extract the token for k10-k10 admin'
 sa_secret=$(kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}" --namespace kasten-io)
 kubectl get secret $sa_secret --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode > $HOME/k8s/eks-token
 sed -i -e '$a\' $HOME/k8s/eks-token
 
-echo '-------Set the default ns to k10'
-kubectl config set-context --current --namespace kasten-io
+
 
 echo '-------Output the IP and token'
 sleep 100

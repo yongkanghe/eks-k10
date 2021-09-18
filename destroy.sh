@@ -1,22 +1,23 @@
 starttime=$(date +%s)
 . setenv.sh
-echo '-------Deleting the GKE Cluster (typically in less than 10 mins)'
-MY_PREFIX=$(echo $(whoami) | sed -e 's/\_//g' | sed -e 's/\.//g' | awk '{print tolower($0)}')
-gkeclustername=$(gcloud container clusters list --format="value(name)" --filter="$MY_PREFIX-$MY_CLUSTER")
-gcloud container clusters delete $gkeclustername --zone $MY_ZONE --quiet
+echo '-------Deleting the EKS Cluster (typically in less than 10 mins)'
+clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
+eksctl delete cluster --name $(cat eks_clustername) --region $MY_REGION
 
-echo '-------Deleting disks'
-for i in $(gcloud compute disks list --format="value(name)" --filter="$MY_PREFIX-$MY_CLUSTER");do echo $i;gcloud compute disks delete $i --zone=$MY_ZONE -q;done
+echo '-------Deleting EBS Volumes'
+aws ec2 describe-volumes --region $MY_REGION --query "Volumes[*].{ID:VolumeId}" --filters Name=tag:eks:cluster-name,Values=$(cat eks_clustername) | grep ID | awk '{print $2}' > ebs.list
+aws ec2 describe-volumes --region $MY_REGION --query "Volumes[*].{ID:VolumeId}" --filters Name=tag:kubernetes.io/cluster/$(cat eks_clustername),Values=owned | grep ID | awk '{print $2}' >> ebs.list
+for i in $(sed 's/\"//g' ebs.list);do echo $i;aws ec2 delete-volume --volume-id $i;done
 
 echo '-------Deleting snapshots'
-for i in $(gcloud compute snapshots list --format="value(name)" --filter="$MY_PREFIX-$MY_CLUSTER");do echo $i;gcloud compute snapshots delete $i -q;done
+aws ec2 describe-snapshots --owner self --query "Snapshots[*].{ID:SnapshotId}" --filters Name=tag:kanister.io/clustername,Values=$clusterid | grep ID | awk '{print $2}' > ebssnap.list
+for i in $(sed 's/\"//g' ebssnap.list);do echo $i;aws ec2 delete-snapshot --snapshot-id $i;done
 
-echo '-------Deleting the bucket'
-myproject=$(gcloud config get-value core/project)
-gsutil -m rm -r gs://$MY_PREFIX-$MY_BUCKET
+echo '-------Deleting objects from the bucket'
+#aws s3 rm s3://$(cat eks_bucketname)/ --recursive
 
 echo '-------Deleting kubeconfig for this cluster'
-kubectl config delete-context $(kubectl config get-contexts | grep $MY_PREFIX-$MY_CLUSTER | awk '{print $2}')
+kubectl config delete-context $(kubectl config get-contexts | grep $(cat eks_clustername) | awk '{print $2}')
 echo "" | awk '{print $1}'
 endtime=$(date +%s)
 duration=$(( $endtime - $starttime ))
