@@ -46,7 +46,6 @@ vi setenv.sh
 4. Remove the bucket
 
 # Cick my picture to watch the how-to video. (To be recorded)
-[![IMAGE ALT TEXT HERE](https://media-exp1.licdn.com/dms/image/C5622AQFAVpxHMBu7lw/feedshare-shrink_2048_1536/0/1630923993310?e=1634169600&v=beta&t=5f3TgJLeA4gpFubLrdtKrvFED3M_z5Q6igza3Ibaheo)](https://www.youtube.com/watch?v=6vDEk_9cNaI)
 
 # For more details about EKS Backup and Restore
 https://blog.kasten.io/cross-cluster-application-migration-and-dr-for-aws-eks-using-kasten-k10
