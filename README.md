@@ -20,8 +20,8 @@ cd eks-k10;./awsprep.sh
 ````
 3. Set your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 ````
-export AWS_ACCESS_KEY_ID="REPLACE_WITH_YOUR_AWS_ACCESS_KEY_ID"         #You need to set your own KEY_ID
-export AWS_SECRET_ACCESS_KEY="REPLACE_WITH_YOUR_AWS_SECRET_ACCESS_KEY" #You need to set your own SECRET_KEY
+export AWS_ACCESS_KEY_ID="REPLACE_WITH_YOUR_AWS_ACCESS_KEY_ID"
+export AWS_SECRET_ACCESS_KEY="REPLACE_WITH_YOUR_AWS_SECRET_ACCESS_KEY"
 ````
 4. Optionally, you can customize the clustername, instance-type, zone, region, bucketname
 ````
