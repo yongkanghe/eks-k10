@@ -86,7 +86,7 @@ spec:
         namespace: kasten-io
     type: ObjectStore
     objectStore:
-      name: $EKS_BUCKET_NAME
+      name: $(cat eks_bucketname)
       objectStoreType: S3
       region: $MY_REGION
 EOF
