@@ -26,7 +26,7 @@ vi setenv.sh
 ````
 1. Create an EKS Cluster from CLI
 2. Install Kasten K10
-3. Deploy a Postgres database
+3. Deploy a Cassandra NoSQL database
 4. Create a location profile
 5. Create a backup policy
 6. Kick off an on-demand backup job
