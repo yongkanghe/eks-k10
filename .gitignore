@@ -3,4 +3,4 @@ eks_clustername
 eksctl
 helm
 kubectl
-awsaccess.sh
+awsaccess
