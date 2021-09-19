@@ -7,16 +7,17 @@ It is challenging to create an EKS cluster from AWS Cloud if you are not familia
 This script based automation allows you to build a ready-to-use Kasten K10 demo environment running on EKS in about about 20 minutes. For simplicity and cost optimization, the EKS cluster will have only one worker node and create a separate vpc and subnets. This is bash shell based scripts which might only work on Cloud Shell. Linux and MacOS terminal may work as well, but I haven't tested it yet. 
 
 # Here're the prerequisities. 
-## Go to AWS Cloud Shell
-1. Clone the github repo to your local host, run below command
+
+1. Go to AWS Cloud Shell
+2. Clone the github repo to your local host, run below command
 ````
 git clone https://github.com/yongkanghe/eks-k10.git
 ````
-2. Install the required tools (eksctl, kubectl, helm) and input AWS Access Credentials
+3. Install the required tools (eksctl, kubectl, helm) and input AWS Access Credentials
 ````
 cd eks-k10;./awsprep.sh
 ````
-3. Optionally, you can customize the clustername, instance-type, zone, region, bucketname
+4. Optionally, you can customize the clustername, instance-type, zone, region, bucketname
 ````
 vi setenv.sh
 ````
