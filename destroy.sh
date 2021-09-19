@@ -1,6 +1,6 @@
 starttime=$(date +%s)
 . setenv.sh
-echo '-------Deleting the EKS Cluster (typically in less than 10 mins)'
+echo '-------Deleting the EKS Cluster (typically in ~ 10 mins)'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
 eksctl delete cluster --name $(cat eks_clustername) --region $MY_REGION
 
