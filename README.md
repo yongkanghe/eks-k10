@@ -9,7 +9,7 @@ This script based automation allows you to build a ready-to-use Kasten K10 demo 
 # Here're the prerequisities. 
 
 1. Go to AWS Cloud Shell
-2. Clone the github repo to your local host, run below command
+2. Clone the github repo, run below command
 ````
 git clone https://github.com/yongkanghe/eks-k10.git
 ````
