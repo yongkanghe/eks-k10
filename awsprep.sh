@@ -16,6 +16,6 @@ echo "alias k=kubectl" >> ~/.bashrc
 . ~/.bashrc
 
 echo "Generate ssh public key if not existing"
-if [ ! -f ~/.ssh/id_rsa ]; then \       
+if [ ! -f ~/.ssh/id_rsa ]; then
   ssh-keygen -q -f ~/.ssh/id_rsa -N ""
 fi
