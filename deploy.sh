@@ -36,10 +36,10 @@ helm install k10 kasten/k10 --namespace=kasten-io \
 echo '-------Set the default ns to k10'
 kubectl config set-context --current --namespace kasten-io
 
-echo '-------Deploying a PostgreSQL database'
-kubectl create namespace postgresql
+echo '-------Deploying a Cassandra database'
+kubectl create ns cassandra
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install --namespace postgresql postgres bitnami/postgresql --set persistence.size=1Gi
+helm install cassandra bitnami/cassandra -n cassandra --set persistence.size=1Gi
 
 echo '-------Output the Cluster ID'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
@@ -96,7 +96,7 @@ cat <<EOF | kubectl apply -f -
 apiVersion: config.kio.kasten.io/v1alpha1
 kind: Policy
 metadata:
-  name: postgresql-backup
+  name: cassandra-backup
   namespace: kasten-io
 spec:
   comment: ""
@@ -136,7 +136,7 @@ spec:
       - key: k10.kasten.io/appNamespace
         operator: In
         values:
-          - postgresql
+          - cassandra
 EOF
 
 sleep 3
@@ -151,7 +151,7 @@ metadata:
 spec:
   subject:
     kind: Policy
-    name: postgresql-backup
+    name: cassandra-backup
     namespace: kasten-io
 EOF
 
