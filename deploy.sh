@@ -5,7 +5,8 @@ EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
 EKS_BUCKET_NAME=$MY_BUCKET-$(date +%s)
 echo $EKS_CLUSTER_NAME > eks_clustername
 echo $EKS_BUCKET_NAME > eks_bucketname
-
+export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1)
+export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1)
 eksctl create cluster \
   --name $EKS_CLUSTER_NAME \
   --version $MY_K8S_VERSION \
