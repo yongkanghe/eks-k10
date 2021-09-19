@@ -12,16 +12,11 @@ This script based automation allows you to build a ready-to-use Kasten K10 demo 
 ````
 git clone https://github.com/yongkanghe/eks-k10.git
 ````
-2. Install the required tools (eksctl, kubectl, helm)
+2. Install the required tools (eksctl, kubectl, helm) and input AWS Access Credentials
 ````
 cd eks-k10;./awsprep.sh
 ````
-3. Set your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
-````
-export AWS_ACCESS_KEY_ID="REPLACE_WITH_YOUR_AWS_ACCESS_KEY_ID"
-export AWS_SECRET_ACCESS_KEY="REPLACE_WITH_YOUR_AWS_SECRET_ACCESS_KEY"
-````
-4. Optionally, you can customize the clustername, instance-type, zone, region, bucketname
+3. Optionally, you can customize the clustername, instance-type, zone, region, bucketname
 ````
 vi setenv.sh
 ````
