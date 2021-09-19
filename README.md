@@ -38,7 +38,7 @@ vi setenv.sh
 1. Remove the EKS Kubernetes Cluster
 2. Remove all the relevant disks
 3. Remove all the relevant snapshots
-4. Remove the bucket
+4. Remove the S3 storage bucket
 
 # Cick my picture to watch the how-to video. (To be recorded)
 
