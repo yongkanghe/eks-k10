@@ -18,7 +18,6 @@ eksctl create cluster \
   --node-type $MY_INSTANCE_TYPE \
   --ssh-public-key ~/.ssh/id_rsa.pub \
   --region $MY_REGION \
-  --zone $MY_ZONE \
   --ssh-access \
   --managed
 
