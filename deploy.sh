@@ -1,5 +1,6 @@
 echo '-------Creating an EKS Cluster (typically about 20 mins)'
 starttime=$(date +%s)
+. ~/.bashrc
 . setenv.sh
 EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
 EKS_BUCKET_NAME=$MY_BUCKET-$(date +%s)
@@ -17,6 +18,7 @@ eksctl create cluster \
   --node-type $MY_INSTANCE_TYPE \
   --ssh-public-key ~/.ssh/id_rsa.pub \
   --region $MY_REGION \
+  --zone $MY_ZONE \
   --ssh-access \
   --managed
 
