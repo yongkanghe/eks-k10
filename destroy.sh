@@ -14,7 +14,7 @@ aws ec2 describe-snapshots --owner self --query "Snapshots[*].{ID:SnapshotId}" -
 for i in $(sed 's/\"//g' ebssnap.list);do echo $i;aws ec2 delete-snapshot --snapshot-id $i;done
 
 echo '-------Deleting objects from the bucket'
-aws s3 rm s3://$(cat eks_bucketname)/ --recursive
+aws s3 rb s3://$(cat eks_bucketname) --force
 
 echo '-------Deleting kubeconfig for this cluster'
 kubectl config delete-context $(kubectl config get-contexts | grep $(cat eks_clustername) | awk '{print $2}')
