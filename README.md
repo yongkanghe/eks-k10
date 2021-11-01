@@ -42,7 +42,7 @@ vi setenv.sh
 4. Remove the S3 storage bucket
 
 # Cick my picture to watch the how-to video.
-[![IMAGE ALT TEXT HERE](https://media-exp1.licdn.com/dms/image/C5622AQFFvnbYckYuEw/feedshare-shrink_2048_1536/0/1632117949616?e=1634774400&v=beta&t=Z4RMzo7gnPj7V52Jmi-0sYeVLIL_IYo9FYrGdIw3Tqs)](https://www.youtube.com/watch?v=v_Aks8GFBVA)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/v_Aks8GFBVA/0.jpg)](https://www.youtube.com/watch?v=v_Aks8GFBVA)
 
 # For more details about EKS Backup and Restore
 https://blog.kasten.io/cross-cluster-application-migration-and-dr-for-aws-eks-using-kasten-k10
