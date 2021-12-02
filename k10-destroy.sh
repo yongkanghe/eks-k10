@@ -1,8 +1,13 @@
 starttime=$(date +%s)
 . setenv.sh
-echo '-------Deleting the EKS Cluster (typically in ~ 10 mins)'
+echo '-------Deleting Cassandra and Kasten K10'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
 # eksctl delete cluster --name $(cat eks_clustername) --region $MY_REGION
+
+helm uninstall cassandra -n cassandra
+helm uninstall k10 -n kasten-io
+kubectl delete ns cassandra
+kubectl delete ns kasten-io
 
 # echo '-------Deleting EBS Volumes'
 # aws ec2 describe-volumes --region $MY_REGION --query "Volumes[*].{ID:VolumeId}" --filters Name=tag:eks:cluster-name,Values=$(cat eks_clustername) | grep ID | awk '{print $2}' > ebs.list
