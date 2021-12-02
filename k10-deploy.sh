@@ -1,4 +1,4 @@
-echo '-------Creating an EKS Cluster (typically about 20 mins)'
+echo '-------Deploying Kasten K10 and Cassandra'
 starttime=$(date +%s)
 . ~/.bashrc
 . setenv.sh
