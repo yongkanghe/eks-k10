@@ -2,10 +2,10 @@ echo '-------Creating an EKS Cluster (typically about 20 mins)'
 starttime=$(date +%s)
 . ~/.bashrc
 . setenv.sh
-EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
-EKS_BUCKET_NAME=$MY_BUCKET-$(date +%s)
-echo $EKS_CLUSTER_NAME > eks_clustername
-echo $EKS_BUCKET_NAME > eks_bucketname
+# EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
+# EKS_BUCKET_NAME=$MY_BUCKET-$(date +%s)
+echo $MY_CLUSTER-$(date +%s) > eks_clustername
+echo $MY_BUCKET-$(date +%s) > eks_bucketname
 export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1)
 export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1)
 eksctl create cluster \
