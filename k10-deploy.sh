@@ -2,8 +2,8 @@ echo '-------Deploying Kasten K10 and Cassandra'
 starttime=$(date +%s)
 . ~/.bashrc
 . setenv.sh
-EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
-EKS_BUCKET_NAME=$MY_BUCKET-$(date +%s)
+# EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
+# EKS_BUCKET_NAME=$MY_BUCKET-$(date +%s)
 echo $EKS_CLUSTER_NAME > eks_clustername
 echo $EKS_BUCKET_NAME > eks_bucketname
 export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1)
