@@ -9,3 +9,4 @@ echo '' | awk '{print $1}'
 kubectl get exportactions.actions.kio.kasten.io -n $my_namespace | grep -v NAME | head -1 | awk '{print $1}' > exportname
 echo "The export job status is $(kubectl get exportactions.actions.kio.kasten.io -n $my_namespace $(cat exportname) -ojsonpath="{.status.state}{'\n'}")"
 
+
