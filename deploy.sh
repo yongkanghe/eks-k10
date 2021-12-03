@@ -9,7 +9,7 @@ echo $MY_BUCKET-$(date +%s) > eks_bucketname
 export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1)
 export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1)
 eksctl create cluster \
-  --name $EKS_CLUSTER_NAME \
+  --name $(cat eks_clustername) \
   --version $MY_K8S_VERSION \
   --nodegroup-name workers4yong1 \
   --nodes 1 \
