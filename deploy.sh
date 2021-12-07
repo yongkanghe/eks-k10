@@ -1,7 +1,7 @@
 echo '-------Creating an EKS Cluster (typically about 20 mins)'
 starttime=$(date +%s)
 . ~/.bashrc
-. setenv.sh
+. ./setenv.sh
 # EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
 # EKS_BUCKET_NAME=$MY_BUCKET-$(date +%s)
 echo $MY_CLUSTER-$(date +%s) > eks_clustername
