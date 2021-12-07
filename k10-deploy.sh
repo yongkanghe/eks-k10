@@ -1,7 +1,7 @@
 echo '-------Deploying Kasten K10 and Cassandra'
 starttime=$(date +%s)
 . ~/.bashrc
-. setenv.sh
+. ./setenv.sh
 EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
 EKS_BUCKET_NAME=$MY_BUCKET-$(date +%s)
 echo $EKS_CLUSTER_NAME > k10_eks_clustername
