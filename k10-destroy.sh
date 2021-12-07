@@ -1,5 +1,5 @@
 starttime=$(date +%s)
-. setenv.sh
+. ./setenv.sh
 echo '-------Deleting Cassandra and Kasten K10'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
 # eksctl delete cluster --name $(cat eks_clustername) --region $MY_REGION
