@@ -2,10 +2,10 @@ echo '-------Deploying Kasten K10 and Cassandra'
 starttime=$(date +%s)
 . ~/.bashrc
 . setenv.sh
-# EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
-# EKS_BUCKET_NAME=$MY_BUCKET-$(date +%s)
-echo $EKS_CLUSTER_NAME > eks_clustername
-echo $EKS_BUCKET_NAME > eks_bucketname
+EKS_CLUSTER_NAME=$MY_CLUSTER-$(date +%s)
+EKS_BUCKET_NAME=$MY_BUCKET-$(date +%s)
+echo $EKS_CLUSTER_NAME > k10_eks_clustername
+echo $EKS_BUCKET_NAME > k10_eks_bucketname
 export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1)
 export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1)
 # eksctl create cluster \
@@ -88,7 +88,7 @@ spec:
         namespace: kasten-io
     type: ObjectStore
     objectStore:
-      name: $(cat eks_bucketname)
+      name: $(cat k10_eks_bucketname)
       objectStoreType: S3
       region: $MY_REGION
 EOF
