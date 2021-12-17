@@ -24,16 +24,20 @@ eksctl create cluster \
 echo '-------Install K10'
 kubectl create ns kasten-io
 helm repo add kasten https://charts.kasten.io
+
+#For Production, remove the lines ending with =1Gi from helm install
 helm install k10 kasten/k10 --namespace=kasten-io \
   --set global.persistence.metering.size=1Gi \
   --set prometheus.server.persistentVolume.size=1Gi \
   --set global.persistence.catalog.size=1Gi \
   --set global.persistence.jobs.size=1Gi \
   --set global.persistence.logging.size=1Gi \
+  --set global.persistence.grafana.size=1Gi \
   --set secrets.awsAccessKeyId="${AWS_ACCESS_KEY_ID}" \
   --set secrets.awsSecretAccessKey="${AWS_SECRET_ACCESS_KEY}" \
   --set auth.tokenAuth.enabled=true \
-  --set externalGateway.create=true  
+  --set externalGateway.create=true \
+  --set metering.mode=airgap 
 
 echo '-------Set the default ns to k10'
 kubectl config set-context --current --namespace kasten-io
