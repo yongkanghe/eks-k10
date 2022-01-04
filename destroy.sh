@@ -2,7 +2,7 @@ starttime=$(date +%s)
 . ./setenv.sh
 echo '-------Deleting the EKS Cluster (typically in ~ 10 mins)'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
-eksctl delete cluster --name $(cat eks_clustername)
+eksctl delete cluster --name $(cat eks_clustername) --region $MY_REGION
 
 echo '-------Deleting EBS Volumes'
 aws ec2 describe-volumes --region $MY_REGION --query "Volumes[*].{ID:VolumeId}" --filters Name=tag:eks:cluster-name,Values=$(cat eks_clustername) | grep ID | awk '{print $2}' > ebs.list
