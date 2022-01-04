@@ -24,8 +24,10 @@ export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1)
 echo '-------Install K10'
 kubectl create ns kasten-io
 helm repo add kasten https://charts.kasten.io
+helm repo update
 
 #For Production, remove the lines ending with =1Gi from helm install
+#For Production, remove the lines ending with airgap from helm install
 helm install k10 kasten/k10 --namespace=kasten-io \
   --set global.persistence.metering.size=1Gi \
   --set prometheus.server.persistentVolume.size=1Gi \
@@ -43,9 +45,9 @@ echo '-------Set the default ns to k10'
 kubectl config set-context --current --namespace kasten-io
 
 echo '-------Deploying a Cassandra database'
-kubectl create ns cassandra
+kubectl create ns k10-cassandra
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install cassandra bitnami/cassandra -n cassandra --set persistence.size=1Gi
+helm install cassandra bitnami/cassandra -n k10-cassandra --set persistence.size=1Gi
 
 echo '-------Output the Cluster ID'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
@@ -102,7 +104,7 @@ cat <<EOF | kubectl apply -f -
 apiVersion: config.kio.kasten.io/v1alpha1
 kind: Policy
 metadata:
-  name: cassandra-backup
+  name: k10-cassandra-backup
   namespace: kasten-io
 spec:
   comment: ""
@@ -142,7 +144,7 @@ spec:
       - key: k10.kasten.io/appNamespace
         operator: In
         values:
-          - cassandra
+          - k10-cassandra
 EOF
 
 sleep 3
@@ -157,7 +159,7 @@ metadata:
 spec:
   subject:
     kind: Policy
-    name: cassandra-backup
+    name: k10-cassandra-backup
     namespace: kasten-io
 EOF
 
