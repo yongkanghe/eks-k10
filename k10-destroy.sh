@@ -19,7 +19,7 @@ kubectl delete ns kasten-io
 # for i in $(sed 's/\"//g' ebssnap.list);do echo $i;aws ec2 delete-snapshot --snapshot-id $i;done
 
 echo '-------Deleting objects from the bucket'
-aws s3 rb s3://$(cat k10_eks_bucketname) --force
+aws s3 rb s3://$(cat eks_bucketname) --force
 
 # echo '-------Deleting kubeconfig for this cluster'
 # kubectl config delete-context $(kubectl config get-contexts | grep $(cat eks_clustername) | awk '{print $2}')
