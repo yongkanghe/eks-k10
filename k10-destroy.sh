@@ -4,9 +4,9 @@ echo '-------Deleting Cassandra and Kasten K10'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
 # eksctl delete cluster --name $(cat eks_clustername) --region $MY_REGION
 
-helm uninstall cassandra -n cassandra
+helm uninstall cassandra -n k10-cassandra
 helm uninstall k10 -n kasten-io
-kubectl delete ns cassandra
+kubectl delete ns k10-cassandra
 kubectl delete ns kasten-io
 
 # echo '-------Deleting EBS Volumes'
