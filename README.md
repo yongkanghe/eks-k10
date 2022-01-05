@@ -6,7 +6,9 @@ It is challenging to create an EKS cluster from AWS Cloud if you are not familia
 
 ![image](https://blog.kasten.io/hs-fs/hubfs/Blog%20Cross-Cluster%20Application%20Migration%20and%20Disaster%20Recovery%20for%20AWS%20EKS%20Using%20Kasten%20K10%20by%20Michael%20Cade%205.png?width=406&name=Blog%20Cross-Cluster%20Application%20Migration%20and%20Disaster%20Recovery%20for%20AWS%20EKS%20Using%20Kasten%20K10%20by%20Michael%20Cade%205.png)
 
-This script based automation allows you to build a ready-to-use Kasten K10 demo environment running on EKS in about about 20 minutes. For simplicity and cost optimization, the EKS cluster will have only one worker node and create a separate vpc and subnets. This is bash shell based scripts which might only work on Cloud Shell. Linux and MacOS terminal may work as well, but I haven't tested it yet. 
+This script based automation allows you to build a ready-to-use Kasten K10 demo environment running on EKS in about about 20 minutes with deploy.sh. For simplicity and cost optimization, the EKS cluster will have only one worker node and create a separate vpc and subnets. This is bash shell based scripts which might only work on Cloud Shell. Linux and MacOS terminal may work as well, but I haven't tested it yet. 
+
+If you already have an EKS cluster running, you only need 3 minutes to protect containers on EKS cluster by k10-deploy.sh. 
 
 # Here're the prerequisities. 
 
@@ -23,7 +25,10 @@ cd eks-k10;./awsprep.sh
 ````
 vi setenv.sh
 ````
-# To build the labs, run 
+
+Do you have an EKS cluster up running? If yes, go to the section 1. Otherwise, go to the section 2. 
+
+# Section 1, to build the labs including EKS cluster, run 
 ````
 ./deploy.sh
 ````
@@ -34,7 +39,7 @@ vi setenv.sh
 5. Create a backup policy
 6. Kick off an on-demand backup job
 
-# To delete the labs, run 
+# To delete the labs including EKS cluster, run 
 ````
 ./destroy.sh
 ````
@@ -42,6 +47,24 @@ vi setenv.sh
 2. Remove all the relevant disks
 3. Remove all the relevant snapshots
 4. Remove the S3 storage bucket
+
+# Section 2, to build the labs already having an EKS Cluster, run 
+````
+./k10-deploy.sh
+````
+1. Install Kasten K10
+2. Deploy a Cassandra NoSQL database
+3. Create a location profile
+4. Create a backup policy
+5. Kick off an on-demand backup job
+
+# To delete the labs excluding EKS cluster, run 
+````
+./k10-destroy.sh
+````
+1. Remove all the relevant disks
+2. Remove all the relevant snapshots
+3. Remove the S3 storage bucket
 
 # Cick my picture to watch the how-to video.
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/v_Aks8GFBVA/0.jpg)](https://www.youtube.com/watch?v=v_Aks8GFBVA)
