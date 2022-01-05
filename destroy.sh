@@ -10,7 +10,7 @@ aws ec2 describe-volumes --region $MY_REGION --query "Volumes[*].{ID:VolumeId}" 
 for i in $(sed 's/\"//g' ebs.list);do echo $i;aws ec2 delete-volume --volume-id $i --region $MY_REGION;done
 
 echo '-------Deleting snapshots'
-aws ec2 describe-snapshots --owner self --query "Snapshots[*].{ID:SnapshotId}" --filters Name=tag:kanister.io/clustername,Values=$clusterid | grep ID | awk '{print $2}' > ebssnap.list
+aws ec2 describe-snapshots --owner self --query "Snapshots[*].{ID:SnapshotId}" --filters Name=tag:kanister.io/clustername,Values=$clusterid --region $MY_REGION | grep ID | awk '{print $2}' > ebssnap.list
 for i in $(sed 's/\"//g' ebssnap.list);do echo $i;aws ec2 delete-snapshot --snapshot-id $i --region $MY_REGION;done
 
 echo '-------Deleting objects from the bucket'
