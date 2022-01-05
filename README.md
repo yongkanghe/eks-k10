@@ -48,7 +48,7 @@ Do you have an EKS cluster up running? If yes, go to the section 1. Otherwise, g
 3. Remove all the relevant snapshots
 4. Remove the S3 storage bucket
 
-# Section 2, to build the labs already having an EKS Cluster, run 
+# Section 2, to build the labs having an EKS Cluster, run 
 ````
 ./k10-deploy.sh
 ````
@@ -66,7 +66,15 @@ Do you have an EKS cluster up running? If yes, go to the section 1. Otherwise, g
 2. Remove all the relevant snapshots
 3. Remove the S3 storage bucket
 
-# Cick my picture to watch the how-to video.
+# Watch the how-to video on how to build an EKS cluster via Web UI
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/d0vhf_ggnko/0.jpg)](https://www.youtube.com/watch?v=d0vhf_ggnko)
+#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
+
+# Watch the how-to video on how to protect containers on EKS cluster
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/27sIjUbxgFk/0.jpg)](https://www.youtube.com/watch?v=27sIjUbxgFk)
+#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
+
+# Watch the how-to video on how to build an EKS cluster + K10 via Automation
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/v_Aks8GFBVA/0.jpg)](https://www.youtube.com/watch?v=v_Aks8GFBVA)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
