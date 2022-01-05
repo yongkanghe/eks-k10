@@ -26,7 +26,7 @@ cd eks-k10;./awsprep.sh
 vi setenv.sh
 ````
 
-Do you have an EKS cluster up running? If yes, go to the section 1. Otherwise, go to the section 2. 
+Do you have an EKS cluster up running? If yes, please go directly to the section 2. Otherwise, follow the guide on the section 1 and ignore section 2. 
 
 # Section 1, to build the labs including EKS cluster, run 
 ````
