@@ -4,3 +4,5 @@ eksctl
 helm
 kubectl
 awsaccess
+eks_*
+
