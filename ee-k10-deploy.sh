@@ -3,27 +3,25 @@ starttime=$(date +%s)
 . ~/.bashrc
 . ./setenv.sh
 
-echo $MY_CLUSTER-$(date +%s) > k10_eks_clustername
+# echo $MY_CLUSTER-$(date +%s) > k10_eks_clustername
 echo $MY_BUCKET-$(date +%s) > k10_eks_bucketname
 
 echo '-------Enable OpenID Connect for the EKS cluster'
 eksctl utils associate-iam-oidc-provider --cluster $(cat k10_eks_clustername) --approve
+myid=$(aws iam list-open-id-connect-providers | grep Arn | awk '{print $2}' | sed -e 's/"//g' | sed -e 's/^.*id\///g')
+cat trust-policy.json | sed -e "s/id\/B823A14A8A7B1ADCD481718B762CF9F5/id\/$myid/g" > trust-policy4yong1.json 
 
-echo '-------Create IAM policy and role'
+echo '-------Create IAM policy and role for K10'
 aws iam create-role --role-name k10-iam-role4yong1 --assume-role-policy-document file://trust-policy4yong1.json
 aws iam put-role-policy --role-name k10-iam-role4yong1 --policy-name k10-iam-policy --policy-document file://k10-iam-policy4yong1.json
-
-export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1)
-export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1)
+myaccountid=$(aws sts get-caller-identity | grep Account | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
+export AWS_IAM_ROLE_ARN=arn:aws:iam::$myaccountid:role/k10-iam-role4yong1
 
 echo '-------Install K10'
 kubectl create ns kasten-io
-#helm repo add kasten https://charts.kasten.io
-#helm repo update
+helm repo add kasten https://charts.kasten.io
+helm repo update
 
-export AWS_IAM_ROLE_ARN=arn:aws:iam::911598032234:role/role4yong1
-
-#export AWS_IAM_ROLE_ARN=$(aws iam get-role --role-name k10-iam-role | grep Arn | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
 #For Production, remove the lines ending with =1Gi from helm install
 #For Production, remove the lines ending with airgap from helm install
 helm install k10 kasten/k10 --namespace=kasten-io \
@@ -43,27 +41,13 @@ kubectl config set-context --current --namespace kasten-io
 
 echo '-------Deploying a Cassandra database'
 kubectl create ns k10-cassandra
-#helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install cassandra bitnami/cassandra -n k10-cassandra --set persistence.size=1Gi
 
 echo '-------Output the Cluster ID'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
 echo "" | awk '{print $1}' > eks-token
 echo My Cluster ID is $clusterid >> eks-token
-
-echo '-------Creating a S3 profile secret'
-#kubectl create secret generic k10-s3-secret \
-#      --namespace kasten-io \
-#      --type secrets.kanister.io/aws \
-#      --from-literal=aws_access_key_id=$AWS_ACCESS_KEY_ID \
-#      --from-literal=aws_secret_access_key=$AWS_SECRET_ACCESS_KEY
-
-kubectl create secret generic k10-s3-secret \
-      --namespace kasten-io \
-      --type secrets.kanister.io/aws \
-      --from-literal=aws_access_key_id=$AWS_ACCESS_KEY_ID \
-      --from-literal=aws_secret_access_key=$AWS_SECRET_ACCESS_KEY \
-      --from-literal=role=arn:aws:iam::911598032234:role/role4yong1
 
 echo '-------Wait for 1 or 2 mins for the Web UI IP and token'
 kubectl wait --for=condition=ready --timeout=180s -n kasten-io pod -l component=jobs
@@ -79,93 +63,11 @@ echo "" | awk '{print $1}' >> eks-token
 echo '-------Waiting for K10 services are up running in about 1 or 2 mins'
 kubectl wait --for=condition=ready --timeout=300s -n kasten-io pod -l component=catalog
 
-echo '-------Creating a S3 profile'
-cat <<EOF | kubectl apply -f -
-apiVersion: config.kio.kasten.io/v1alpha1
-kind: Profile
-metadata:
-  name: $MY_OBJECT_STORAGE_PROFILE
-  namespace: kasten-io
-spec:
-  type: Location
-  locationSpec:
-    credential:
-      secretType: AwsAccessKey
-      secret:
-        apiVersion: v1
-        kind: Secret
-        name: k10-s3-secret
-        namespace: kasten-io
-    type: ObjectStore
-    objectStore:
-      name: $(cat k10_eks_bucketname)
-      objectStoreType: S3
-      region: $MY_REGION
-EOF
+#Create a S3 location profile
+./ee-s3-location.sh
 
-echo '------Create backup policies'
-cat <<EOF | kubectl apply -f -
-apiVersion: config.kio.kasten.io/v1alpha1
-kind: Policy
-metadata:
-  name: k10-cassandra-backup
-  namespace: kasten-io
-spec:
-  comment: ""
-  frequency: "@hourly"
-  actions:
-    - action: backup
-      backupParameters:
-        profile:
-          namespace: kasten-io
-          name: $MY_OBJECT_STORAGE_PROFILE
-    - action: export
-      exportParameters:
-        frequency: "@hourly"
-        migrationToken:
-          name: ""
-          namespace: ""
-        profile:
-          name: $MY_OBJECT_STORAGE_PROFILE
-          namespace: kasten-io
-        receiveString: ""
-        exportData:
-          enabled: true
-      retention:
-        hourly: 0
-        daily: 0
-        weekly: 0
-        monthly: 0
-        yearly: 0
-  retention:
-    hourly: 4
-    daily: 1
-    weekly: 1
-    monthly: 0
-    yearly: 0
-  selector:
-    matchExpressions:
-      - key: k10.kasten.io/appNamespace
-        operator: In
-        values:
-          - k10-cassandra
-EOF
-
-sleep 3
-
-echo '-------Kickoff the on-demand backup job'
-sleep 2
-cat <<EOF | kubectl create -f -
-apiVersion: actions.kio.kasten.io/v1alpha1
-kind: RunAction
-metadata:
-  generateName: run-backup-
-spec:
-  subject:
-    kind: Policy
-    name: k10-cassandra-backup
-    namespace: kasten-io
-EOF
+#Create a Cassandra backup policy
+./cassandra-policy.sh
 
 echo '-------Accessing K10 UI'
 cat eks-token
