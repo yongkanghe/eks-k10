@@ -6,20 +6,15 @@ starttime=$(date +%s)
 echo $MY_CLUSTER-$(date +%s) > k10_eks_clustername
 echo $MY_BUCKET-$(date +%s) > k10_eks_bucketname
 
+echo '-------Enable OpenID Connect for the EKS cluster'
+eksctl utils associate-iam-oidc-provider --cluster $(cat k10_eks_clustername) --approve
+
+echo '-------Create IAM policy and role'
+aws iam create-role --role-name k10-iam-role4yong1 --assume-role-policy-document file://trust-policy4yong1.json
+aws iam put-role-policy --role-name k10-iam-role4yong1 --policy-name k10-iam-policy --policy-document file://k10-iam-policy4yong1.json
+
 export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1)
 export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1)
-# eksctl create cluster \
-#   --name $EKS_CLUSTER_NAME \
-#   --version $MY_K8S_VERSION \
-#   --nodegroup-name workers4yong1 \
-#   --nodes 1 \
-#   --nodes-min 1 \
-#   --nodes-max 3 \
-#   --node-type $MY_INSTANCE_TYPE \
-#   --ssh-public-key ~/.ssh/id_rsa.pub \
-#   --region $MY_REGION \
-#   --ssh-access \
-#   --managed
 
 echo '-------Install K10'
 kubectl create ns kasten-io

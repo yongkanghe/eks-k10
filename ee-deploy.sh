@@ -1,11 +1,11 @@
-echo '-------Creating an EKS Cluster + K10 (typically about 20 mins)'
+echo '-------Creating an EKS Cluster + K10 on AWS Event Engine (typically about 20 mins)'
 starttime=$(date +%s)
 
 #Create an EKS cluster
 ./eks-deploy.sh
 
 #Deploy K10 + sample DB + backup policy 
-./k10-deploy.sh
+./ee-k10-deploy.sh
 
 endtime=$(date +%s)
 duration=$(( $endtime - $starttime ))
