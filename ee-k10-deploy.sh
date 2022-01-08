@@ -9,12 +9,12 @@ echo $MY_BUCKET-$(date +%s) > k10_eks_bucketname
 echo '-------Enable OpenID Connect for the EKS cluster'
 eksctl utils associate-iam-oidc-provider --cluster $(cat k10_eks_clustername) --approve
 myid=$(aws iam list-open-id-connect-providers | grep Arn | awk '{print $2}' | sed -e 's/"//g' | sed -e 's/^.*id\///g')
-cat trust-policy.json | sed -e "s/id\/B823A14A8A7B1ADCD481718B762CF9F5/id\/$myid/g" > trust-policy4yong1.json 
+myaccountid=$(aws sts get-caller-identity | grep Account | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
+cat trust-policy.json | sed -e "s/id\/B823A14A8A7B1ADCD481718B762CF9F5/id\/$myid/g" | sed -e "s/911598032234/$myaccountid/g" > trust-policy4yong1.json 
 
 echo '-------Create IAM policy and role for K10'
 aws iam create-role --role-name k10-iam-role4yong1 --assume-role-policy-document file://trust-policy4yong1.json
-aws iam put-role-policy --role-name k10-iam-role4yong1 --policy-name k10-iam-policy --policy-document file://k10-iam-policy4yong1.json
-myaccountid=$(aws sts get-caller-identity | grep Account | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
+aws iam put-role-policy --role-name k10-iam-role4yong1 --policy-name k10-iam-policy4yong1 --policy-document file://k10-iam-policy4yong1.json
 export AWS_IAM_ROLE_ARN=arn:aws:iam::$myaccountid:role/k10-iam-role4yong1
 
 echo '-------Install K10'
@@ -74,7 +74,9 @@ cat eks-token
 
 endtime=$(date +%s)
 duration=$(( $endtime - $starttime ))
-echo "-------Total time is $(($duration / 60)) minutes $(($duration % 60)) seconds."
+echo "-------Total time for K10+DB+Policy is $(($duration / 60)) minutes $(($duration % 60)) seconds."
 echo "" | awk '{print $1}'
 echo "-------Created by Yongkang"
 echo "-------Email me if any suggestions or issues he@yongkang.cloud"
+echo "" | awk '{print $1}'
+echo "" | awk '{print $1}'
