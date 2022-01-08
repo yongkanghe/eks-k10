@@ -10,8 +10,8 @@ kubectl delete ns k10-cassandra
 kubectl delete ns kasten-io
 
 # echo '-------Deleting EBS Volumes'
-# aws ec2 describe-volumes --region $MY_REGION --query "Volumes[*].{ID:VolumeId}" --filters Name=tag:eks:cluster-name,Values=$(cat eks_clustername) | grep ID | awk '{print $2}' > ebs.list
-# aws ec2 describe-volumes --region $MY_REGION --query "Volumes[*].{ID:VolumeId}" --filters Name=tag:kubernetes.io/cluster/$(cat eks_clustername),Values=owned | grep ID | awk '{print $2}' >> ebs.list
+# aws ec2 describe-volumes --region $MY_REGION --query "Volumes[*].{ID:VolumeId}" --filters Name=tag:eks:cluster-name,Values=$(cat k10_eks_clustername) | grep ID | awk '{print $2}' > ebs.list
+# aws ec2 describe-volumes --region $MY_REGION --query "Volumes[*].{ID:VolumeId}" --filters Name=tag:kubernetes.io/cluster/$(cat k10_eks_clustername),Values=owned | grep ID | awk '{print $2}' >> ebs.list
 # for i in $(sed 's/\"//g' ebs.list);do echo $i;aws ec2 delete-volume --volume-id $i;done
 
 echo '-------Deleting snapshots'
