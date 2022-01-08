@@ -1,8 +1,6 @@
-eks_bucketname
-eks_clustername
 eksctl
 helm
 kubectl
 awsaccess
 eks_*
-
+k10_*
