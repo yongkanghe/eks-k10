@@ -8,7 +8,7 @@ echo $MY_BUCKET-$(date +%s) > k10_eks_bucketname
 
 echo '-------Enable OpenID Connect for the EKS cluster'
 eksctl utils associate-iam-oidc-provider --cluster $(cat k10_eks_clustername) --approve
-myid=$(aws iam list-open-id-connect-providers | grep Arn | awk '{print $2}' | sed -e 's/"//g' | sed -e 's/^.*id\///g')
+myid=$(aws iam list-open-id-connect-providers | grep Arn | awk '{print $2}' | sed -e 's/"//g' | sed -e 's/^.*id\///g' | tail -1)
 myaccountid=$(aws sts get-caller-identity | grep Account | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
 cat trust-policy.json | sed -e "s/id\/B823A14A8A7B1ADCD481718B762CF9F5/id\/$myid/g" | sed -e "s/911598032234/$myaccountid/g" > trust-policy4yong1.json 
 
