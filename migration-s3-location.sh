@@ -4,7 +4,7 @@
 export MY_OBJECT_STORAGE_PROFILE=myaws3-migration
 # export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1)
 # export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1)
-echo aks2eks-k10migration4yong1 > k10_migration_bucketname
+echo k10migration4yong1-$(cat awsaccess | (read -n 2 i; echo $i;))$(date +%m%d) | awk '{print tolower($0)}' > k10_migration_bucketname
 
 echo '-------Creating a S3 profile secret'
 kubectl create secret generic k10-s3-secret \
