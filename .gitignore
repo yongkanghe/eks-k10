@@ -1,6 +1,7 @@
 eksctl
 helm
 kubectl
-awsaccess
+*access*
 eks_*
 k10_*
+ebs*
