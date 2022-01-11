@@ -46,19 +46,19 @@ helm install cassandra bitnami/cassandra -n k10-cassandra --set persistence.size
 
 echo '-------Output the Cluster ID'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
-echo "" | awk '{print $1}' > eks-token
-echo My Cluster ID is $clusterid >> eks-token
+echo "" | awk '{print $1}' > eks_token
+echo My Cluster ID is $clusterid >> eks_token
 
 echo '-------Wait for 1 or 2 mins for the Web UI IP and token'
 kubectl wait --for=condition=ready --timeout=180s -n kasten-io pod -l component=jobs
 k10ui=http://$(kubectl get svc gateway-ext | awk '{print $4}'|grep -v EXTERNAL)/k10/#
-echo -e "\nCopy/Paste the link to browser to access K10 Web UI -->> $k10ui" >> eks-token
-echo "" | awk '{print $1}' >> eks-token
+echo -e "\nCopy/Paste the link to browser to access K10 Web UI -->> $k10ui" >> eks_token
+echo "" | awk '{print $1}' >> eks_token
 sa_secret=$(kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}" --namespace kasten-io)
-echo "Copy/Paste the token below to Signin K10 Web UI" >> eks-token
-echo "" | awk '{print $1}' >> eks-token
-kubectl get secret $sa_secret --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode | awk '{print $1}' >> eks-token
-echo "" | awk '{print $1}' >> eks-token
+echo "Copy/Paste the token below to Signin K10 Web UI" >> eks_token
+echo "" | awk '{print $1}' >> eks_token
+kubectl get secret $sa_secret --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode | awk '{print $1}' >> eks_token
+echo "" | awk '{print $1}' >> eks_token
 
 echo '-------Waiting for K10 services are up running in about 1 or 2 mins'
 kubectl wait --for=condition=ready --timeout=300s -n kasten-io pod -l component=catalog
@@ -70,7 +70,7 @@ kubectl wait --for=condition=ready --timeout=300s -n kasten-io pod -l component=
 ./cassandra-policy.sh
 
 echo '-------Accessing K10 UI'
-cat eks-token
+cat eks_token
 
 endtime=$(date +%s)
 duration=$(( $endtime - $starttime ))
