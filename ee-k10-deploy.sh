@@ -4,7 +4,7 @@ starttime=$(date +%s)
 . ./setenv.sh
 
 # echo $MY_CLUSTER-$(date +%s) > k10_eks_clustername
-echo $MY_BUCKET-$(date +%s) > k10_eks_bucketname
+echo $MY_BUCKET-$(date +%s)$RANDOM > k10_eks_bucketname
 
 echo '-------Enable OpenID Connect for the EKS cluster'
 eksctl utils associate-iam-oidc-provider --cluster $(cat k10_eks_clustername) --approve
