@@ -16,10 +16,11 @@ if [ ! -f ~/eks-k10/helm ]; then
   mv linux-amd64/helm .
   rm helm-v3.7.0-linux-amd64.tar.gz
   rm -rf linux-amd64
-  echo "export PATH=$PATH:~/eks-k10" >> ~/.bashrc
-  echo "alias k=kubectl" >> ~/.bashrc
-  . ~/.bashrc
 fi
+
+echo "export PATH=$PATH:~/eks-k10" >> ~/.bashrc
+echo "alias k=kubectl" >> ~/.bashrc
+. ~/.bashrc
 
 echo "Generate ssh public key if not existing"
 if [ ! -f ~/.ssh/id_rsa ]; then
