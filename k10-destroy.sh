@@ -4,7 +4,7 @@ echo '-------Deleting Cassandra and Kasten K10'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
 # eksctl delete cluster --name $(cat k10_eks_clustername) --region $MY_REGION
 
-aws iam get-role --role-name k10-iam-role4yong1
+aws iam get-role --role-name k10-iam-role4yong1 | grep role4yong1
 
 if [ `echo $?` -eq 0 ]
 then
