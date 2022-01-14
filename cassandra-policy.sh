@@ -48,10 +48,10 @@ spec:
           - k10-cassandra
 EOF
 
-sleep 3
+sleep 5
 
 echo '-------Kickoff the on-demand backup job'
-sleep 2
+sleep 5
 cat <<EOF | kubectl create -f -
 apiVersion: actions.kio.kasten.io/v1alpha1
 kind: RunAction
