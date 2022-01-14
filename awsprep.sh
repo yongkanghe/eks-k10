@@ -18,8 +18,13 @@ if [ ! -f ~/eks-k10/helm ]; then
   rm -rf linux-amd64
 fi
 
-echo "export PATH=$PATH:~/eks-k10" >> ~/.bashrc
-echo "alias k=kubectl" >> ~/.bashrc
+cat ~/.bashrc | grep eks-k10
+
+if [ `echo $?` -eq 1 ]
+then
+  echo "export PATH=$PATH:~/eks-k10" >> ~/.bashrc
+  echo "alias k=kubectl" >> ~/.bashrc
+fi
 . ~/.bashrc
 
 echo "Generate ssh public key if not existing"
