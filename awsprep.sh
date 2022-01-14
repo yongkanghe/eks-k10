@@ -25,7 +25,7 @@ then
   echo "export PATH=$PATH:~/eks-k10" >> ~/.bashrc
   echo "alias k=kubectl" >> ~/.bashrc
 fi
-. ~/.bashrc
+source ~/.bashrc
 
 echo "Generate ssh public key if not existing"
 if [ ! -f ~/.ssh/id_rsa ]; then
