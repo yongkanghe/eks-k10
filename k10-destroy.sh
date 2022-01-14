@@ -4,6 +4,14 @@ echo '-------Deleting Cassandra and Kasten K10'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
 # eksctl delete cluster --name $(cat k10_eks_clustername) --region $MY_REGION
 
+aws iam get-role --role-name k10-iam-role4yong1
+
+if [ `echo $?` -eq 0 ]
+then
+  aws iam delete-role-policy --role-name k10-iam-role4yong1 --policy-name k10-iam-policy4yong1
+  aws iam delete-role --role-name k10-iam-role4yong1 
+fi
+
 helm uninstall cassandra -n k10-cassandra
 helm uninstall k10 -n kasten-io
 kubectl delete ns k10-cassandra
