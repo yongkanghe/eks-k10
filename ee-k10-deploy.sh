@@ -52,7 +52,9 @@ echo My Cluster ID is $clusterid >> eks_token
 echo '-------Wait for 1 or 2 mins for the Web UI IP and token'
 kubectl wait --for=condition=ready --timeout=180s -n kasten-io pod -l component=jobs
 k10ui=http://$(kubectl get svc gateway-ext | awk '{print $4}'|grep -v EXTERNAL)/k10/#
-echo -e "\nCopy/Paste the link to browser to access K10 Web UI -->> $k10ui" >> eks_token
+echo -e "\nCopy/Paste the link to browser to access K10 Web UI" >> eks_token
+echo "" | awk '{print $1}' >> eks_token
+echo -e "\n$k10ui" >> eks_token
 echo "" | awk '{print $1}' >> eks_token
 sa_secret=$(kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}" --namespace kasten-io)
 echo "Copy/Paste the token below to Signin K10 Web UI" >> eks_token
