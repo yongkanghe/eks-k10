@@ -4,7 +4,7 @@ starttime=$(date +%s)
 . ./setenv.sh
 
 # echo $MY_CLUSTER-$(date +%s) > k10_eks_clustername
-echo $MY_BUCKET-$(date +%s) > k10_eks_bucketname
+echo $MY_BUCKET-$(date +%s)$RANDOM > k10_eks_bucketname
 # export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1)
 # export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1)
 
