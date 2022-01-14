@@ -19,7 +19,7 @@ git clone https://github.com/yongkanghe/eks-k10.git
 ````
 3. Install the required tools (eksctl, kubectl, helm) and input AWS Access Credentials
 ````
-cd eks-k10;./awsprep.sh
+cd eks-k10;./awsprep.sh;. ./setenv.sh
 ````
 4. Optionally, you can customize the clustername, instance-type, zone, region, bucketname
 ````
