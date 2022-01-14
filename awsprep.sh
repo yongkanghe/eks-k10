@@ -33,6 +33,8 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   ssh-keygen -q -f ~/.ssh/id_rsa -N ""
 fi
 
+. ./setenv.sh
+
 aws sts get-caller-identity | grep assumed-role
 if [ `echo $?` -eq 1 ]
 then
