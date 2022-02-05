@@ -41,8 +41,8 @@ vi setenv.sh
 
 # Destroy based on your needs
 
-|---------------------------|-------------------------------------|-------------------------------------|
 | Destroy EKS               | Destroy K10                         | Destroy EKS and K10                 |
+|---------------------------|-------------------------------------|-------------------------------------|
 | ``` ./eks-destroy.sh ```  | ``` ./k10-destroy.sh ```            | ``` ./destroy.sh ```                |
 | 1.Remove the EKS Cluster  |                                     | 1.Remove the EKS Cluster            |
 |                           | 1.Remove all the relevant disks     | 2.Remove all the relevant disks     |
