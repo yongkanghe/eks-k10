@@ -49,7 +49,7 @@ If yes, please go directly to the section 2. Otherwise, follow the guide on the 
 3. Remove all the relevant snapshots
 4. Remove the S3 storage bucket
 
-# Section 2, build the labs having an EKS Cluster, run 
+# Section 2, build the labs having an EKS cluster, run 
 ````
 ./k10-deploy.sh
 ````
