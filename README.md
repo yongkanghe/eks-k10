@@ -8,7 +8,7 @@ It is challenging to create an EKS cluster from AWS Cloud if you are not familia
 
 This script based automation allows you to build a ready-to-use Kasten K10 demo environment running on EKS in about about 20 minutes with deploy.sh. For simplicity and cost optimization, the EKS cluster will have only one worker node and create a separate vpc and subnets. This is bash shell based scripts which might only work on Cloud Shell. Linux and MacOS terminal may work as well, but I haven't tested it yet. 
 
-If you already have an EKS cluster running, you only need 3 minutes to protect containers on EKS cluster by k10-deploy.sh from the section 2. 
+If you already have an EKS cluster running, you only need 3 minutes to protect containers on EKS cluster by k10-deploy.sh. 
 
 # Here're the prerequisities. 
 
@@ -35,7 +35,7 @@ vi setenv.sh
 | 1.Create an EKS Cluster   |                                 | 1.Create an EKS Cluster         |
 |                           | 1.Install Kasten K10            | 2.Install Kasten K10            |
 |                           | 2.Deploy a Cassandra database   | 3.Deploy a Cassandra database   |
-|                           | 3.Create a location profile     | 4.Create a location profile     |
+|                           | 3.Create a S3 location profile  | 4.Create a S3 location profile  |
 |                           | 4.Create a backup policy        | 5.Create a backup policy        |
 |                           | 5.Kick off on-demand backup job | 6.Kick off on-demand backup job |
 
