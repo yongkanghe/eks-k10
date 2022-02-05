@@ -45,8 +45,8 @@ vi setenv.sh
 |---------------------------|-------------------------------------|-------------------------------------|
 | ``` ./eks-destroy.sh ```  | ``` ./k10-destroy.sh ```            | ``` ./destroy.sh ```                |
 | 1.Remove the EKS Cluster  |                                     | 1.Remove the EKS Cluster            |
-|                           | 1.Remove all the relevant disks     | 2.Remove all the relevant disks     |
-|                           | 2.Remove all the relevant snapshots | 3.Remove all the relevant snapshots |
+|                           | 1.Remove Cassandra database         | 2.Remove all the relevant disks     |
+|                           | 2.Remove Kasten K10                 | 3.Remove all the relevant snapshots |
 |                           | 3.Remove the S3 storage bucket      | 4.Remove the S3 storage bucket      |
 
 # Build an EKS cluster via Web UI
