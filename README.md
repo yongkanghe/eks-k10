@@ -26,7 +26,7 @@ cd eks-k10;./awsprep.sh;. ./setenv.sh
 vi setenv.sh
 ````
 
-# Choose the deployment option based on your needs
+# Choose one option based on your needs
 
 | Don't have an EKS cluster | Already have an EKS cluster     | Deploy everything               |
 |---------------------------|---------------------------------|---------------------------------|
