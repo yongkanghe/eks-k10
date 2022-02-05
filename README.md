@@ -39,47 +39,16 @@ vi setenv.sh
 |                           | 4.Create a backup policy        | 5.Create a backup policy        |
 |                           | 5.Kick off on-demand backup job | 6.Kick off on-demand backup job |
 
+# Destroy based on your needs
 
-# Do you have an EKS cluster up running? 
-If yes, please go directly to the section 2. Otherwise, follow the guide on the section 1 and ignore section 2. 
-
-# Section 1, build the labs including EKS cluster, run 
-````
-./deploy.sh
-````
-1. Create an EKS Cluster from CLI
-2. Install Kasten K10
-3. Deploy a Cassandra NoSQL database
-4. Create a location profile
-5. Create a backup policy
-6. Kick off an on-demand backup job
-
-# To delete the labs including EKS cluster, run 
-````
-./destroy.sh
-````
-1. Remove the EKS Kubernetes Cluster
-2. Remove all the relevant disks
-3. Remove all the relevant snapshots
-4. Remove the S3 storage bucket
-
-# Section 2, build the labs having an EKS cluster, run 
-````
-./k10-deploy.sh
-````
-1. Install Kasten K10
-2. Deploy a Cassandra NoSQL database
-3. Create a location profile
-4. Create a backup policy
-5. Kick off an on-demand backup job
-
-# To delete the labs excluding EKS cluster, run 
-````
-./k10-destroy.sh
-````
-1. Remove all the relevant disks
-2. Remove all the relevant snapshots
-3. Remove the S3 storage bucket
+| Don't have an EKS cluster | Already have an EKS cluster         | Have nothing                        |
+|---------------------------|-------------------------------------|-------------------------------------|
+| Destroy EKS               | Destroy K10                         | Destroy EKS and K10                 |
+| ``` ./eks-destroy.sh ```  | ``` ./k10-destroy.sh ```            | ``` ./destroy.sh ```                |
+| 1.Remove the EKS Cluster  |                                     | 1.Remove the EKS Cluster            |
+|                           | 1.Remove all the relevant disks     | 2.Remove all the relevant disks     |
+|                           | 2.Remove all the relevant snapshots | 3.Remove all the relevant snapshots |
+|                           | 3.Remove the S3 storage bucket      | 4.Remove the S3 storage bucket      |
 
 # Learn how to build an EKS cluster via Web UI
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/d0vhf_ggnko/0.jpg)](https://www.youtube.com/watch?v=d0vhf_ggnko)
