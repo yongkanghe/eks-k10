@@ -93,3 +93,8 @@ http://k10.yongkang.cloud
 
 #### Follow [Yongkang He](http://yongkang.cloud) on LinkedIn, Join [Kubernetes Data Management](https://www.linkedin.com/groups/13983251) LinkedIn Group
 
+
+| Don't have an EKS cluster | Already have an EKS cluster | Deploy everything   |
+|---------------------------|-----------------------------|---------------------|
+| EKS only deploy           | K10 only deploy             | EKS+K10 deploy      |
+| ``` ./eks-deploy.sh ```   | ``` ./k10-deploy.sh ```     | ``` ./deploy.sh ``` |
