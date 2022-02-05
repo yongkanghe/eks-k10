@@ -26,6 +26,20 @@ cd eks-k10;./awsprep.sh;. ./setenv.sh
 vi setenv.sh
 ````
 
+# Choose the deployment option based on your needs
+
+| Don't have an EKS cluster | Already have an EKS cluster     | Deploy everything               |
+|---------------------------|---------------------------------|---------------------------------|
+| Deploy EKS only           | Deploy K10 only                 | Deploy EKS+K10                  |
+| ``` ./eks-deploy.sh ```   | ``` ./k10-deploy.sh ```         | ``` ./deploy.sh ```             |
+| 1.Create an EKS Cluster   |                                 | 1.Create an EKS Cluster         |
+|                           | 1.Install Kasten K10            | 2.Install Kasten K10            |
+|                           | 2.Deploy a Cassandra database   | 3.Deploy a Cassandra database   |
+|                           | 3.Create a location profile     | 4.Create a location profile     |
+|                           | 4.Create a backup policy        | 5.Create a backup policy        |
+|                           | 5.Kick off on-demand backup job | 6.Kick off on-demand backup job |
+
+
 # Do you have an EKS cluster up running? 
 If yes, please go directly to the section 2. Otherwise, follow the guide on the section 1 and ignore section 2. 
 
@@ -92,15 +106,3 @@ http://k10.yongkang.cloud
 # Contributors
 
 #### Follow [Yongkang He](http://yongkang.cloud) on LinkedIn, Join [Kubernetes Data Management](https://www.linkedin.com/groups/13983251) LinkedIn Group
-
-| Don't have an EKS cluster | Already have an EKS cluster     | Deploy everything               |
-|---------------------------|---------------------------------|---------------------------------|
-| Deploy EKS only           | Deploy K10 only                 | Deploy EKS+K10                  |
-| ``` ./eks-deploy.sh ```   | ``` ./k10-deploy.sh ```         | ``` ./deploy.sh ```             |
-| 1.Create an EKS Cluster   |                                 | 1.Create an EKS Cluster         |
-|                           | 1.Install Kasten K10            | 2.Install Kasten K10            |
-|                           | 2.Deploy a Cassandra database   | 3.Deploy a Cassandra database   |
-|                           | 3.Create a location profile     | 4.Create a location profile     |
-|                           | 4.Create a backup policy        | 5.Create a backup policy        |
-|                           | 5.Kick off on-demand backup job | 6.Kick off on-demand backup job |
-
