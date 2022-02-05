@@ -96,5 +96,5 @@ http://k10.yongkang.cloud
 
 | Don't have an EKS cluster | Already have an EKS cluster | Deploy everything   |
 |---------------------------|-----------------------------|---------------------|
-| EKS only deploy           | K10 only deploy             | EKS+K10 deploy      |
+| Deploy EKS only           | Deploy K10 only             | Deploy EKS+K10      |
 | ``` ./eks-deploy.sh ```   | ``` ./k10-deploy.sh ```     | ``` ./deploy.sh ``` |
