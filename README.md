@@ -41,7 +41,6 @@ vi setenv.sh
 
 # Destroy based on your needs
 
-| Don't have an EKS cluster | Already have an EKS cluster         | Have nothing                        |
 |---------------------------|-------------------------------------|-------------------------------------|
 | Destroy EKS               | Destroy K10                         | Destroy EKS and K10                 |
 | ``` ./eks-destroy.sh ```  | ``` ./k10-destroy.sh ```            | ``` ./destroy.sh ```                |
