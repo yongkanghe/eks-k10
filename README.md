@@ -61,7 +61,7 @@ vi setenv.sh
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/v_Aks8GFBVA/0.jpg)](https://www.youtube.com/watch?v=v_Aks8GFBVA)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
-# Build an EKS + K10 for AWS Event Engine
+# Build an EKS + K10 on AWS Event Engine
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/VRJVdUqMiRg/0.jpg)](https://www.youtube.com/watch?v=VRJVdUqMiRg)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
