@@ -69,11 +69,11 @@ vi setenv.sh
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/AB97gJMlzRE/0.jpg)](https://www.youtube.com/watch?v=AB97gJMlzRE)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
-# K10 on AWS EKS self-paced Lab Guide
-## Charges to your own AWS account
+# K10 on EKS self-paced Lab Guide
+## Option 1, Charges to your own AWS account
 http://aws-lg.yongkang.cloud
 
-## AWS provides access via Event Engine
+## Option 2, AWS provides access via Event Engine
 http://aws-lg-ee.yongkang.cloud
 
 # Build, Protect and Migrate Containers
