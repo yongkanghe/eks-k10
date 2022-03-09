@@ -73,7 +73,7 @@ vi setenv.sh
 ## Option 1, AWS provides access via Event Engine
 http://aws-lg-ee.yongkang.cloud
 
-## Option 2, Charges to your own AWS account
+## Option 2, Use your own AWS account
 http://aws-lg.yongkang.cloud
 
 # Build, Protect and Migrate Containers
