@@ -65,12 +65,12 @@ vi setenv.sh
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/VRJVdUqMiRg/0.jpg)](https://www.youtube.com/watch?v=VRJVdUqMiRg)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
-# Build, Protect and Migrate Containers
-[![IMAGE ALT TEXT HERE](https://pbs.twimg.com/media/FK5rsaeXwAIEmtI?format=jpg&name=small)](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ)
-#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
-
 # Kasten on AWS Workshop
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/AB97gJMlzRE/0.jpg)](https://www.youtube.com/watch?v=AB97gJMlzRE)
+#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
+
+# Build, Protect and Migrate Containers
+[![IMAGE ALT TEXT HERE](https://pbs.twimg.com/media/FK5rsaeXwAIEmtI?format=jpg&name=small)](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
 # EKS Backup and Restore
