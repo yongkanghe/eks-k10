@@ -26,5 +26,5 @@ spec:
     objectStore:
       name: $(cat k10_eks_bucketname)
       objectStoreType: S3
-      region: $MY_REGION
+      region: $AWS_REGION
 EOF
