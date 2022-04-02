@@ -2,7 +2,7 @@ echo '-------Creating an EKS Cluster + K10 on AWS Event Engine (typically about 
 starttime=$(date +%s)
 
 #Create an EKS cluster
-./eks-deploy.sh
+./ee-eks-deploy.sh
 
 #Deploy K10 + sample DB + backup policy 
 ./ee-k10-deploy.sh
