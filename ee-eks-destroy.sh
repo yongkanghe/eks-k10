@@ -1,11 +1,12 @@
 starttime=$(date +%s)
 . ./setenv.sh
 
+echo '-------Deleting the EKS Cluster (typically in ~ 10 mins)'
+
 echo '-------Deleting AWS IAM role and policy'
 aws iam delete-role-policy --role-name k10-iam-role4yong1 --policy-name k10-iam-policy4yong1
 aws iam delete-role --role-name k10-iam-role4yong1 
 
-echo '-------Deleting the EKS Cluster (typically in ~ 10 mins)'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
 eksctl delete cluster --name $(cat k10_eks_clustername) --region $AWS_REGION
 
@@ -31,4 +32,3 @@ echo "" | awk '{print $1}'
 echo "-------Created by Yongkang"
 echo "-------Email me if any suggestions or issues he@yongkang.cloud"
 echo "" | awk '{print $1}'
-
