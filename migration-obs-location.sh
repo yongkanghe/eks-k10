@@ -12,7 +12,7 @@ if [ ! -f hwcaccess ]; then
   echo $AWS_SECRET_ACCESS_KEY >> hwcaccess
 fi
 
-export MY_REGION=ap-southeast-1
+export MY_REGION=ap-southeast-3
 export MY_OBJECT_STORAGE_PROFILE=myobs-migration
 export AWS_ACCESS_KEY_ID=$(cat hwcaccess | head -1)
 export AWS_SECRET_ACCESS_KEY=$(cat hwcaccess | tail -1)
