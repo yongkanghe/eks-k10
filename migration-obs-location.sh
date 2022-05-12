@@ -12,7 +12,7 @@ if [ ! -f hwcaccess ]; then
   echo $AWS_SECRET_ACCESS_KEY >> hwcaccess
 fi
 
-export MY_REGION=ap-southeast-3
+export MY_HW_REGION=ap-southeast-3
 export MY_OBJECT_STORAGE_PROFILE=myobs-migration
 export AWS_ACCESS_KEY_ID=$(cat hwcaccess | head -1)
 export AWS_SECRET_ACCESS_KEY=$(cat hwcaccess | tail -1)
@@ -45,6 +45,6 @@ spec:
     objectStore:
       name: $(cat k10_migration_bucketname)
       objectStoreType: S3
-      region: $MY_REGION
-      endpoint: obs.$MY_REGION.myhuaweicloud.com
+      region: $MY_HW_REGION
+      endpoint: obs.$MY_HW_REGION.myhuaweicloud.com
 EOF
