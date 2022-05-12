@@ -5,3 +5,4 @@ kubectl
 eks_*
 k10_*
 ebs*
+*migration_bucket*
