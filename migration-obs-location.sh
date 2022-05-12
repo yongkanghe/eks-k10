@@ -4,25 +4,25 @@ MY_PREFIX=$(echo $(whoami) | sed -e 's/\_//g' | sed -e 's/\.//g' | awk '{print t
 
 if [ ! -f hwcaccess ]; then
   echo -n "Enter your Huawei Cloud Access Key ID and press [ENTER]: "
-  read AWS_ACCESS_KEY_ID
+  read HWC_AWS_ACCESS_KEY_ID
   echo "" | awk '{print $1}'
-  echo $AWS_ACCESS_KEY_ID > hwcaccess
+  echo $HWC_AWS_ACCESS_KEY_ID > hwcaccess
   echo -n "Enter your Huawei Cloud Secret Access Key and press [ENTER]: "
-  read AWS_SECRET_ACCESS_KEY
-  echo $AWS_SECRET_ACCESS_KEY >> hwcaccess
+  read HWC_AWS_SECRET_ACCESS_KEY
+  echo $HWC_AWS_SECRET_ACCESS_KEY >> hwcaccess
 fi
 
 export MY_HW_REGION=ap-southeast-3
 export MY_OBJECT_STORAGE_PROFILE=myobs-migration
-export AWS_ACCESS_KEY_ID=$(cat hwcaccess | head -1)
-export AWS_SECRET_ACCESS_KEY=$(cat hwcaccess | tail -1)
+export HWC_AWS_ACCESS_KEY_ID=$(cat hwcaccess | head -1)
+export HWC_AWS_SECRET_ACCESS_KEY=$(cat hwcaccess | tail -1)
 echo k10migration4yong > k10_migration_bucketname
 
 kubectl create secret generic k10-obs-s3-secret \
       --namespace kasten-io \
       --type secrets.kanister.io/aws \
-      --from-literal=aws_access_key_id=$AWS_ACCESS_KEY_ID \
-      --from-literal=aws_secret_access_key=$AWS_SECRET_ACCESS_KEY
+      --from-literal=aws_access_key_id=$HWC_AWS_ACCESS_KEY_ID \
+      --from-literal=aws_secret_access_key=$HWC_AWS_SECRET_ACCESS_KEY
 
 echo '-------Creating an OBS S3 profile'
 cat <<EOF | kubectl apply -f -
