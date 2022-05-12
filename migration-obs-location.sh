@@ -16,7 +16,7 @@ export MY_REGION=ap-southeast-3
 export MY_OBJECT_STORAGE_PROFILE=myobs-migration
 export AWS_ACCESS_KEY_ID=$(cat hwcaccess | head -1)
 export AWS_SECRET_ACCESS_KEY=$(cat hwcaccess | tail -1)
-echo k10migration4yong1 > k10_migration_bucketname
+echo k10migration4yong > k10_migration_bucketname
 
 kubectl create secret generic k10-obs-s3-secret \
       --namespace kasten-io \
