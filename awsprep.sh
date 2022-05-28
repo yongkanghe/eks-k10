@@ -6,7 +6,8 @@ fi
 
 if [ ! -f ~/eks-k10/kubectl ]; then
   echo "Install kubectl"
-  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  # curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  curl -LO "https://dl.k8s.io/release/v1.23.1/bin/linux/amd64/kubectl"
   chmod 755 kubectl
 fi
 
