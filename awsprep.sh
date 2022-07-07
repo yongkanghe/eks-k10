@@ -37,9 +37,9 @@ fi
 
 clear
 
-aws sts get-caller-identity | grep assumed-role
-if [ `echo $?` -eq 1 ]
-then
+# aws sts get-caller-identity | grep assumed-role
+# if [ `echo $?` -eq 1 ]
+# then
   echo -n "Enter your AWS Access Key ID and press [ENTER]: "
   read AWS_ACCESS_KEY_ID
   echo "" | awk '{print $1}'
@@ -47,7 +47,7 @@ then
   echo -n "Enter your AWS Secret Access Key and press [ENTER]: "
   read AWS_SECRET_ACCESS_KEY
   echo $AWS_SECRET_ACCESS_KEY >> awsaccess
-fi
+# fi
 
 clear
 
