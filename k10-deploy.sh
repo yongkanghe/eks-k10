@@ -15,7 +15,7 @@ helm repo update
 
 #For Production, remove the lines ending with =1Gi from helm install
 #For Production, remove the lines ending with airgap from helm install
-helm install k10 kasten/k10 --namespace=kasten-io \
+helm install k10 kasten/k10 --version=5.0.6 --namespace=kasten-io \
   --set global.persistence.metering.size=1Gi \
   --set prometheus.server.persistentVolume.size=1Gi \
   --set global.persistence.catalog.size=1Gi \
