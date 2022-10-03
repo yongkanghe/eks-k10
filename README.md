@@ -26,7 +26,9 @@ cd eks-k10;./awsprep.sh;. ./setenv.sh
 vi setenv.sh
 ````
 
-## NOTE: If you are using AWS provided access via Event Engine, please use add ee- to the scripts mentioned below. E.g. ee-eks-deploy.sh, ee-k10-deploy.sh, ee-deploy.sh
+## NOTE: 
+If you are using AWS provided access via Event Engine, please use add ee- to the scripts mentioned below. 
+E.g. ee-eks-deploy.sh, ee-k10-deploy.sh, ee-deploy.sh
 
 # Deploy based on your needs
 
