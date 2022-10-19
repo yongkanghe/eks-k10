@@ -23,6 +23,8 @@ eksctl create cluster \
 
 aws eks update-kubeconfig --name $(cat k10_eks_clustername)
 
+./csi-enable.sh
+
 endtime=$(date +%s)
 duration=$(( $endtime - $starttime ))
 echo "-------Total time to build an EKS cluster is $(($duration / 60)) minutes $(($duration % 60)) seconds."
