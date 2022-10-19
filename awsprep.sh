@@ -1,7 +1,7 @@
 if [ ! -f ~/eks-k10/eksctl ]; then
   echo "Install eksctl"
-  # curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C ~/eks-k10
-  curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/v0.92.0/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C ~/eks-k10
+  curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C ~/eks-k10
+  # curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/v0.92.0/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C ~/eks-k10
 fi
 
 if [ ! -f ~/eks-k10/kubectl ]; then
