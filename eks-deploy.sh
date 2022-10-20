@@ -21,7 +21,7 @@ eksctl create cluster \
   --ssh-access \
   --managed
 
-aws eks update-kubeconfig --name $(cat k10_eks_clustername)
+aws eks update-kubeconfig --name $(cat k10_eks_clustername) --region $MY_REGION
 
 ./csi-enable.sh
 
