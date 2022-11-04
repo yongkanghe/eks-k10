@@ -6,9 +6,9 @@ clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
 
 echo '-------Deleting Cassandra and Kasten K10'
 
-helm uninstall cassandra -n k10-cassandra
+helm uninstall cassandra -n yong-cassandra
 helm uninstall k10 -n kasten-io
-kubectl delete ns k10-cassandra
+kubectl delete ns yong-cassandra
 kubectl delete ns kasten-io
 
 # echo '-------Deleting EBS Volumes'
