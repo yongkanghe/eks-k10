@@ -32,9 +32,9 @@ echo '-------Set the default ns to k10'
 kubectl config set-context --current --namespace kasten-io
 
 echo '-------Deploying a Cassandra database'
-kubectl create ns k10-cassandra
+kubectl create ns yong-cassandra
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install cassandra bitnami/cassandra -n k10-cassandra --set persistence.size=1Gi
+helm install cassandra bitnami/cassandra -n yong-cassandra --set persistence.size=1Gi
 
 echo '-------Output the Cluster ID'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
@@ -98,7 +98,7 @@ kubectl wait --for=condition=ready --timeout=300s -n kasten-io pod -l component=
 # apiVersion: config.kio.kasten.io/v1alpha1
 # kind: Policy
 # metadata:
-#   name: k10-cassandra-backup
+#   name: yong-cassandra-backup
 #   namespace: kasten-io
 # spec:
 #   comment: ""
@@ -138,7 +138,7 @@ kubectl wait --for=condition=ready --timeout=300s -n kasten-io pod -l component=
 #       - key: k10.kasten.io/appNamespace
 #         operator: In
 #         values:
-#           - k10-cassandra
+#           - yong-cassandra
 # EOF
 
 # sleep 3
@@ -153,7 +153,7 @@ kubectl wait --for=condition=ready --timeout=300s -n kasten-io pod -l component=
 # spec:
 #   subject:
 #     kind: Policy
-#     name: k10-cassandra-backup
+#     name: yong-cassandra-backup
 #     namespace: kasten-io
 # EOF
 
