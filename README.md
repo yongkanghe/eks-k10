@@ -84,11 +84,11 @@ http://aws-lg.yongkang.cloud
 [![IMAGE ALT TEXT HERE](https://pbs.twimg.com/media/FK5rsaeXwAIEmtI?format=jpg&name=small)](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
-# EKS Backup and Restore
-https://blog.kasten.io/cross-cluster-application-migration-and-dr-for-aws-eks-using-kasten-k10
-
-# Kasten - No. 1 Kubernetes Backup
+## Kasten - No. 1 Self Managed Kubernetes Backup
 https://kasten.io 
+
+# CloudCasa - Best Kubernetes Backup as a Service
+https://cloudcasa.io 
 
 # Contributors
 
