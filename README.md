@@ -57,11 +57,15 @@ If you are using AWS provided access via Event Engine, please use ee-* scripts i
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/d0vhf_ggnko/0.jpg)](https://www.youtube.com/watch?v=d0vhf_ggnko)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
-# Protect containers on EKS cluster
+# Secure containers via CloudCasa
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/v0NtUVUkfmQ/0.jpg)](https://www.youtube.com/watch?v=v0NtUVUkfmQ)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
 # Secure your containers via Falco
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/v0NtUVUkfmQ/0.jpg)](https://www.youtube.com/watch?v=v0NtUVUkfmQ)
+#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
+
+# Backup your containers via K10
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/27sIjUbxgFk/0.jpg)](https://www.youtube.com/watch?v=27sIjUbxgFk)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
